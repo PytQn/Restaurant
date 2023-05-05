@@ -1,0 +1,16 @@
+{% extends 'layout.html'%} {% block content %}
+
+<div class="container"></div>
+<h4>Username - {{current_user.username}}</h4>
+<h4>First Name - {{current_user.first_name}}</h4>
+<h4>Last Name - {{current_user.last_name}}</h4>
+<h4>Email - {{current_user.email}}</h4>
+
+<a href="{{url_for('users.history')}}" class="btn waves-effect waves-light"
+  >Orders History</a
+>
+<a href="{{url_for('users.edit')}}" class="btn waves-effect waves-light"
+  >Edit Info</a
+>
+</div>
+{% endblock %}

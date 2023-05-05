@@ -1,0 +1,66 @@
+{% extends 'layout.html'%} {% block content %}
+<h1>Edit {{ dish.name }} Dish</h1>
+<form
+  action="{{url_for('admins.edit_dish',id=dish.id)}}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div><input type="text" name="name" value="{{dish.name}}" /></div>
+
+  <div>
+    <input type="number" name="price" value="{{dish.price}}" />
+  </div>
+  <div>
+    <input type="text" name="description" value="{{dish.description}}" />
+  </div>
+  <div>
+    <label for="image">Image:</label>
+    <img src="{{dish.image}}" width="300" />
+  </div>
+  <div>
+    <input type="file" name="image" id="image" />
+  </div>
+  <br /><br />
+  <label>
+    <input
+      type="checkbox"
+      name="is_gluten_free"
+      {%
+      if
+      dish.is_gluten_free
+      %}checked{%
+      endif
+      %}
+    />
+    <span>Gluten Free</span>
+  </label>
+  <br /><br />
+  <br /><br />
+  <label>
+    <input
+      type="checkbox"
+      name="is_vegeterian"
+      {%
+      if
+      dish.is_vegeterian
+      %}checked{%
+      endif
+      %}
+    />
+    <span>Vegeterian</span>
+  </label>
+  <br /><br />
+  <div class="input-field col s12">
+    <br /><br />
+    <label for="category_id">Category:</label>
+    <select name="category_id" required>
+      {% for category in categories %} {% if category.id == dish.category_id %}
+      <option value="{{ category.id }}" selected>{{ category.name }}</option>
+      {% else %}
+      <option value="{{ category.id }}">{{ category.name }}</option>
+      {% endif %} {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn waves-effect waves-light">Edit Dish</button>
+</form>
+{% endblock %}

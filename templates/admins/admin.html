@@ -1,0 +1,24 @@
+{% extends 'layout.html'%} {% block content %}
+<div class="container">
+  <h1 class="blue-text text-darken-2">Welcome {{current_user.username}}!</h1>
+  <h3 class="blue-text text-darken-2">Here you can manage your Restaurant</h3>
+  <br /><br />
+
+  <a
+    href="{{url_for('admins.all_deliveries')}}"
+    class="btn waves-effect waves-light"
+    >Deliveries</a
+  >
+  <a
+    href="{{url_for('admins.list_dishes')}}"
+    class="btn waves-effect waves-light"
+    >Dishes</a
+  >
+  <a
+    href="{{url_for('admins.list_categories')}}"
+    class="btn waves-effect waves-light"
+    >Categories</a
+  >
+</div>
+<br /><br />
+{% endblock %}

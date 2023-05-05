@@ -1,0 +1,43 @@
+{% extends 'layout.html'%} {% block content %}
+
+<form action="{{url_for('users.edit')}}" method="POST">
+  <div>
+    Password
+    <input type="password" name="password" value="{{current_user.password}}" />
+  </div>
+  <div>
+    Confirm Password
+    <input
+      type="password"
+      name="password_confirm"
+      value="{{current_user.password}}"
+    />
+  </div>
+  <div>
+    First Name
+    <input
+      type="text"
+      name="first_name"
+      value="{{current_user.first_name}}"
+      pattern="[a-zA-Z ]+"
+      required
+    />
+  </div>
+  <div>
+    Last Name
+    <input
+      type="text"
+      name="last_name"
+      value="{{current_user.last_name}}"
+      pattern="[a-zA-Z ]+"
+      required
+    />
+  </div>
+  <div>
+    Email
+    <input type="email" name="email" value="{{current_user.email}}" required />
+  </div>
+  <button class="btn waves-effect waves-light" type="submit">Edit Info</button>
+</form>
+
+{% endblock %}

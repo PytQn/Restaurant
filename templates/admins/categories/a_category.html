@@ -1,0 +1,43 @@
+{% extends 'layout.html'%} {% block content %}
+<a
+  href="{{ url_for('admins.add_category') }}"
+  class="btn waves-effect waves-light"
+  >Add New Category</a
+>
+<a href="{{url_for('admins.admin')}}" class="btn waves-effect waves-light"
+  >Main Menu</a
+>
+<br /><br />
+
+<div class="container">
+  <div class="row">
+    {% for category in categories %}
+    <div class="col s6">
+      <div>
+        <img src="{{category.image}}" width="300" />
+      </div>
+      <div>
+        <h3>{{category.name}}</h3>
+      </div>
+      <a
+        href="{{ url_for('admins.edit_category',id=category.id)}}"
+        class="btn waves-effect waves-light"
+        >Edit</a
+      >
+      <br /><br />
+      <form
+        method="POST"
+        action="{{ url_for('admins.delete_category', id=category.id) }}"
+      >
+        <input
+          class="btn waves-effect waves-light"
+          type="submit"
+          value="Delete"
+        />
+      </form>
+      <br /><br />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'layout.html'%} {% block content %}
+<form action="{{url_for('users.signup')}}" method="POST">
+  <div><input type="text" name="username" placeholder="Username" /></div>
+  <div>
+    <input type="password" name="password" placeholder="Password" />
+  </div>
+  <div>
+    <input
+      type="password"
+      name="password_confirm"
+      placeholder="Confirm Password"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      name="first_name"
+      placeholder="First Name"
+      pattern="[a-zA-Z ]+"
+      required
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      name="last_name"
+      placeholder="Last Name"
+      pattern="[a-zA-Z ]+"
+      required
+    />
+  </div>
+  <div>
+    <input type="email" name="email" placeholder="Email" required />
+  </div>
+  <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+</form>
+{% endblock %}

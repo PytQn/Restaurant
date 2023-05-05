@@ -1,0 +1,48 @@
+{% extends 'layout.html'%} {% block content %}
+<h1>Create New Dish</h1>
+<div class="conteiner">
+  <form
+    action="{{url_for('admins.add_dish')}}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div><input type="text" name="name" placeholder="Name" required /></div>
+
+    <div>
+      <input type="number" name="price" placeholder="Price" required />
+    </div>
+    <div>
+      <input type="text" name="description" placeholder="Description" />
+    </div>
+    <div>
+      <label for="image">Image:</label>
+      <br />
+      <input type="file" name="image" id="image" />
+    </div>
+    <br /><br />
+    <label>
+      <input type="checkbox" name="is_gluten_free" />
+      <span>Gluten Free</span>
+    </label>
+    <br /><br />
+    <br /><br />
+    <label>
+      <input type="checkbox" name="is_vegeterian" />
+      <span>Vegeterian</span>
+    </label>
+    <br /><br />
+    <div class="input-field col s12">
+      <br /><br />
+      <label for="category_id">Category:</label>
+      <select name="category_id" required>
+        {% for category in categories %}
+        <option value="{{category.id}}">{{ category.name }}</option>
+        {% endfor %}</select
+      ><br /><br />
+    </div>
+    <button class="btn waves-effect waves-light" type="submit">
+      Create New Dish
+    </button>
+  </form>
+</div>
+{% endblock %}

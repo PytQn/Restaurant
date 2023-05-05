@@ -1,0 +1,54 @@
+{% extends 'layout.html'%} {% block content %}
+<h1 class="blue-text text-darken-2">Deliveries</h1>
+<a href="{{url_for('admins.admin')}}" class="btn waves-effect waves-light"
+  >Main Menu</a>
+
+{% for delivery in deliveries %}{% for user in users %} {% if
+user.id==delivery.cart.user_id %}
+<h4>Delivery ID - {{delivery.id}}</h4>
+{% if delivery.is_delivered %}
+<h6 class="blue-text text-darken-2">Delivered</h6>
+{%else%}
+<h6 class="blue-text text-darken-2">Not Delivered Yet</h6>
+<form
+        method="POST"
+        action="{{ url_for('admins.delivered', id=delivery.id) }}"
+      >
+        <input
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="delivered"
+          value="Mark Delivered"
+        />
+  </form>
+{% endif %}
+<h6>Order Summary - {{summary}} $</h6>
+<h6>Order Date - {{ delivery.created.strftime('%d/%m/%Y - %H:%M:%S') }}</h6>
+<h6>ID & Username - {{delivery.cart.user_id}} : {{user.username}}</h6>
+<h6>Full Name - {{user.first_name}} {{user.last_name}}</h6>
+<h6>Email - {{user.email}}</h6>
+{% endif %}{% endfor %}
+<table>
+  <thead>
+    <tr>
+      <th>Dish Name</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Total Dish Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in delivery.cart.items %} {% for dish in dishes %} {% if
+    dish.id==item.dish_id %}
+    <tr>
+      <td>{{dish.name}}</td>
+      <td>{{dish.price}} $</td>
+      <td>{{item.amount}}</td>
+      <td>{{item.amount*dish.price}} $</td>
+      </form>
+    </tr>
+    {% endif %} {% endfor %} {% endfor %}
+  </tbody>
+</table>
+<br><br>
+{% endfor %} {% endblock %}

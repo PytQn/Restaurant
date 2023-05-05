@@ -1,0 +1,12 @@
+{% extends 'layout.html'%} {% block content %}
+<form action="{{url_for('admins.admin_login')}}" method="POST">
+  <div class="input-field col s6">
+    <input type="text" name="username" placeholder="Admin Username" />
+  </div>
+  <div class="input-field col s6">
+    <input type="password" name="password" placeholder="Admin Password" />
+  </div>
+  <button class="btn waves-effect waves-light" type="submit">Login</button>
+</form>
+
+{% endblock %}

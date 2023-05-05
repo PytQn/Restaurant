@@ -1,0 +1,17 @@
+{% extends 'layout.html'%} {% block content %}
+<h1>Create New Category</h1>
+<form
+  action="{{url_for('admins.add_category')}}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <div><input type="text" name="name" placeholder="Name" required /></div>
+  <div>
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image" />
+  </div>
+  <button class="btn waves-effect waves-light" type="submit">
+    Create New Category
+  </button>
+</form>
+{% endblock %}

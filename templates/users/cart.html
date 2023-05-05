@@ -1,0 +1,54 @@
+{% extends 'layout.html'%} {% block content %} {% if cart==None %}
+<h1>Your Cart Is Empty !</h1>
+{% else %} {% if summary!=0 %}
+<div>
+  <a
+    href="{{url_for('users.order',id=cart.id)}}"
+    class="btn waves-effect waves-light"
+    >Order</a
+  >
+</div>
+<div>
+  <h3 class="blue-text text-darken-2">Order Summary - {{summary}} $</h3>
+</div>
+{% else %}
+<h1>Your Cart Is Empty !</h1>
+{% endif %}
+<table>
+  {% if summary!=0 %}
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Total Dish Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  {% endif %}
+  <tbody>
+    <form action="{{url_for('users.cart',id=cart.user_id)}}" method="POST">
+      {% for item in cart.items %} {% for dish in dishes %} {% if
+      dish.id==item.dish_id %}
+      <tr>
+        <td>{{dish.name}}</td>
+        <td>{{dish.price}} $</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.amount*dish.price}} $</td>
+        <td>
+          <button
+            class="btn waves-effect waves-light"
+            type="submit"
+            name="item"
+            value="{{item.id}}"
+            class="secondary-content waves-effect waves-teal btn-flat"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endif %} {% endfor %} {% endfor %}
+    </form>
+  </tbody>
+</table>
+{% endif %}{% endblock %}
