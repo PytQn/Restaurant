@@ -6,7 +6,7 @@ from routes.admins import admins_bp
 from routes.users import users_bp
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql+psycopg2://restor:123Qwerty@myrestaurant.postgres.database.azure.com/postgres'
 app.config['SECRET_KEY'] = 'dkfu5647lsemgs66jsdg34654'
 
 db.init_app(app)
@@ -25,4 +25,4 @@ def homepage():
 app.register_blueprint(users_bp)
 app.register_blueprint(admins_bp)
 
-app.run(debug=True)
+app.run(debug=True,host="0.0.0.0")
